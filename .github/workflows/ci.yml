@@ -20,8 +20,9 @@ jobs:
         distribution: 'adopt'
         java-version: '17'
 
-    - name: Build with Maven
-      run: mvn clean install
-
     - name: Run tests
       run: mvn test
+
+    - name: Build with Maven
+      run: mvn clean install
+      if: success()  # Only run if the tests were successful

@@ -20,18 +20,12 @@ jobs:
         distribution: 'adopt'
         java-version: '17'
 
-    - name: Set up database configuration
-      run: |
-        echo "SPRING_DATASOURCE_URL=jdbc:mysql://sql.freedb.tech:3306/freedb_bidhan" >> $GITHUB_ENV
-        echo "SPRING_DATASOURCE_USERNAME=freedb_bidhan" >> $GITHUB_ENV
-        echo "SPRING_DATASOURCE_PASSWORD=fcs@SrCfbV$vpf6" >> $GITHUB_ENV
-
     - name: Build with Maven
       run: mvn clean install
 
     - name: Run tests
       run: mvn test
       env:
-        SPRING_DATASOURCE_URL: ${{ env.SPRING_DATASOURCE_URL }}
-        SPRING_DATASOURCE_USERNAME: ${{ env.SPRING_DATASOURCE_USERNAME }}
-        SPRING_DATASOURCE_PASSWORD: ${{ env.SPRING_DATASOURCE_PASSWORD }}
+        SPRING_DATASOURCE_URL: jdbc:mysql://sql.freedb.tech:3306/freedb_bidhan
+        SPRING_DATASOURCE_USERNAME: freedb_bidhan
+        SPRING_DATASOURCE_PASSWORD: fcs@SrCfbV$vpf6
